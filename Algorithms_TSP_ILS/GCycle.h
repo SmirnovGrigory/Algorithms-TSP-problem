@@ -15,31 +15,6 @@ class GCycle {
 		int n;
 
 	public:
-		void generatePath() {
-			random_device seed;
-			cycle[0] = seed() % this->n;
-			points[cycle[0]].pass();
-
-			for (int i = 0; i < this->n - 1; i++) {
-				double minCost=-1;
-				int bestPoint=-1;
-				for (int j = 0; j < this->n; j++) {
-					if (i==j || points[j].isPassed())
-						continue;
-					double currentCost = costMatrix[i][j];
-					if (minCost == -1) {
-						minCost = currentCost;
-						bestPoint = j;
-					} 
-					else if (currentCost<minCost) {
-						minCost = currentCost;
-						bestPoint = j;
-					}
-				}
-				cycle[i + 1] = bestPoint;
-				points[bestPoint].pass();
-			}
-		}
 
 		GCycle(string& ifname) {
 			ifstream myfile(ifname);
@@ -92,6 +67,78 @@ class GCycle {
 			for (int i = 0; i < this->n; i++)
 				strCycle += to_string(points[cycle[i]].getID()) + "\n";
 			return strCycle;
+		}
+
+		void generatePath() { //ячейки i==j в costMatrix тоже надо проинициализировать
+			random_device seed;
+			cycle[0] = seed() % this->n;
+			points[cycle[0]].pass();
+
+			for (int i = 0; i < this->n - 1; i++) {
+				double minCost = -1;
+				int bestPoint = -1;
+				for (int j = 0; j < this->n; j++) {
+					if (i == j || points[j].isPassed())
+						continue;
+					double currentCost = costMatrix[i][j];
+					if (minCost == -1) {
+						minCost = currentCost;
+						bestPoint = j;
+					}
+					else if (currentCost < minCost) {
+						minCost = currentCost;
+						bestPoint = j;
+					}
+				}
+				cycle[i + 1] = bestPoint;
+				points[bestPoint].pass();
+			}
+		}
+
+		void opt2() { //применяем первое попавшееся улучшение
+			for (int i = 0; i < this->n - 1; i++)
+				for (int j = i + 2; j < this->n; j++) {
+					if (i == 0 && j == this->n - 1)
+						continue;
+					double currentCost = costMatrix[cycle[i]][cycle[i + 1]]
+						+ costMatrix[cycle[j]][cycle[(j + 1) % this->n]];
+					double potentialCost = costMatrix[cycle[i]][cycle[j]]
+						+ costMatrix[cycle[i + 1]][cycle[(j + 1) % this->n]];
+					if (potentialCost < currentCost) { 
+						int tmp = cycle[j];
+						cycle[j] = cycle[i + 1];
+						cycle[i + 1] = tmp;
+						i+=2;
+						j--;
+						while (i<j) { // возможно не учтен случай с нулем
+							int tmp = cycle[j];
+							cycle[j] = cycle[i];
+							cycle[i] = tmp;
+							i++;
+							j--;
+						}
+						return;
+					}
+				}
+		}
+
+		void opt4() {
+
+		}
+
+		void ILS() {
+			double previousCost = this->getCost();
+			while (1) {
+				this->opt2();
+				double currentCost = this->getCost();
+				if (previousCost != currentCost) {
+					cout << currentCost << endl;
+					previousCost = currentCost;
+				}
+				else
+					break;
+			}
+			//дальше работаем с opt4
 		}
 };
 
