@@ -19,15 +19,18 @@ int main() {
     string my_file = "cases/case1.txt";
     GCycle solution(my_file);
     solution.generatePath();
+    cout << solution.getCycle() << '\n';
+    solution.perturbation(.9);
+    cout << solution.getCycle() << '\n';
 
-    solution.visualiseGraph();
-
-    cout << solution.getCost() << endl;
-    solution.ILS();
-    cout << "Is Gcycle correct?  " << solution.isCorrect() << endl;
-
-    solution.visualiseGraph();
-    my_file = "cases/case131.txt";
+//    solution.visualiseGraph();
+//
+//    cout << solution.getCost() << endl;
+//    solution.ILS();
+//    cout << "Is Gcycle correct?  " << solution.isCorrect() << endl;
+//
+//    solution.visualiseGraph();
+//    my_file = "cases/case131.txt";
     /*GCycle solution(my_file);
     solution.generatePath();
     cout << solution.getCost()<<endl;
@@ -35,7 +38,7 @@ int main() {
     cout << solution.getCost() << endl;
     cout << "Is Gcycle correct?  "<<solution.isCorrect() << endl;
     cout << endl << solution.getCycle();*/
-    string out1_file = "statistics/outcase131.txt";
-    generateStatistics(30, my_file, out1_file);
+//    string out1_file = "statistics/outcase131.txt";
+//    generateStatistics(30, my_file, out1_file);
 }
 

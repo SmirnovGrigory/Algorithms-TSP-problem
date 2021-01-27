@@ -7,6 +7,7 @@
 #include <string>
 #include <random>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -133,6 +134,15 @@ public:
             this->cycle[i + 1] = bestPoint;
             this->points[bestPoint].pass();
         }
+    }
+
+    void perturbation(double force) {
+        if (force >= 1) force = .9;
+        if (force <= .1) force = .1;
+        int count = (int) (this->n * force);
+        random_device generator;
+        unsigned int seed = generator() % (this->n - count);
+        shuffle(this->cycle.begin() + seed, this->cycle.begin() + seed + count, generator);
     }
 
     void switch2Edges(int i, int j) {
