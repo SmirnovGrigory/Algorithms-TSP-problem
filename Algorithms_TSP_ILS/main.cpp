@@ -15,7 +15,7 @@ void generateStatistics(int n, string& filePath, string& outname) {
 }
 
 int main() {
-	string my_file = "cases\\case500.txt";
+	string my_file = "cases\\case131.txt";
 	/*GCycle solution(my_file);
 	solution.generatePath();
 	cout << solution.getCost()<<endl;
@@ -23,6 +23,6 @@ int main() {
 	cout << solution.getCost() << endl;
 	cout << "Is Gcycle correct?  "<<solution.isCorrect() << endl;
 	cout << endl << solution.getCycle();*/
-	string out1_file = "statistics\\outcase500.txt";
-	generateStatistics(1, my_file, out1_file);
+	string out1_file = "statistics\\outcase131.txt";
+	generateStatistics(30, my_file, out1_file);
 }
