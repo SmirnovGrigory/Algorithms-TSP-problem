@@ -70,6 +70,8 @@ class GCycle {
 		}
 
 		void generatePath() { //ячейки i==j в costMatrix тоже надо проинициализировать
+			for (int i = 0; i < points.size(); i++)
+				points[i].deletePass();
 			random_device seed;
 			cycle[0] = seed() % this->n;
 			points[cycle[0]].pass();
@@ -95,7 +97,22 @@ class GCycle {
 			}
 		}
 
-		void opt2() { //применяем первое попавшееся улучшение
+		void switch2Edges(int i, int j) {
+			int tmp = cycle[j];
+			cycle[j] = cycle[i + 1];
+			cycle[i + 1] = tmp;
+			i += 2;
+			j--;
+			while (i < j) {
+				int tmp = cycle[j];
+				cycle[j] = cycle[i];
+				cycle[i] = tmp;
+				i++;
+				j--;
+			}
+		}
+
+		void opt2AnyReduce() { 
 			for (int i = 0; i < this->n - 1; i++)
 				for (int j = i + 2; j < this->n; j++) {
 					if (i == 0 && j == this->n - 1)
@@ -105,21 +122,34 @@ class GCycle {
 					double potentialCost = costMatrix[cycle[i]][cycle[j]]
 						+ costMatrix[cycle[i + 1]][cycle[(j + 1) % this->n]];
 					if (potentialCost < currentCost) { 
-						int tmp = cycle[j];
-						cycle[j] = cycle[i + 1];
-						cycle[i + 1] = tmp;
-						i+=2;
-						j--;
-						while (i<j) { // возможно не учтен случай с нулем
-							int tmp = cycle[j];
-							cycle[j] = cycle[i];
-							cycle[i] = tmp;
-							i++;
-							j--;
-						}
+						switch2Edges(i, j);
 						return;
 					}
 				}
+		}
+
+		void opt2BestReduce() {
+			int I=-1, J = -1;
+			int bestReduceCost = -1;
+			for (int i = 0; i < this->n - 1; i++)
+				for (int j = i + 2; j < this->n; j++) {
+					if (i == 0 && j == this->n - 1)
+						continue;
+					double currentCost = costMatrix[cycle[i]][cycle[i + 1]]
+						+ costMatrix[cycle[j]][cycle[(j + 1) % this->n]];
+					double potentialCost = costMatrix[cycle[i]][cycle[j]]
+						+ costMatrix[cycle[i + 1]][cycle[(j + 1) % this->n]];
+					if (potentialCost < currentCost && (currentCost - potentialCost)>bestReduceCost) {
+						bestReduceCost = currentCost - potentialCost;
+						I = i;
+						J = j;
+					}
+				}
+
+			if (I==-1 || J == -1 || bestReduceCost==-1)
+				return;
+			else
+				switch2Edges(I, J);
 		}
 
 		void opt4() {
@@ -129,10 +159,10 @@ class GCycle {
 		void ILS() {
 			double previousCost = this->getCost();
 			while (1) {
-				this->opt2();
+				this->opt2BestReduce();
 				double currentCost = this->getCost();
 				if (previousCost != currentCost) {
-					cout << currentCost << endl;
+					//cout << currentCost << endl;
 					previousCost = currentCost;
 				}
 				else
