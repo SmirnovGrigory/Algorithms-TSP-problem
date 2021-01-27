@@ -37,12 +37,10 @@ public:
         int n1;
         myfile >> n1;
         this->n = n1;
-        this->n = 0;
-        cin >> this->n;
         this->points.resize(this->n);
         int id, x, y;
         for (int i = 0; i < this->n; i++) {
-            cin >> id >> x >> y;
+            myfile >> id >> x >> y;
             this->points[i].setID(id);
             this->points[i].setLoc(x, y);
         }

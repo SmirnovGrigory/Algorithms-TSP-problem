@@ -23,6 +23,7 @@ void test1() {
     solution.visualiseGraph();
     solution.ILS(10000);
     solution.visualiseGraph();
+    // Best result - 568
 }
 
 void test2() {
@@ -30,8 +31,9 @@ void test2() {
     GCycle solution(file);
     solution.generatePath();
     solution.visualiseGraph();
-    solution.ILS(1000);
+    solution.ILS(5);
     solution.visualiseGraph();
+    // Best result - 3536
 }
 
 int main() {

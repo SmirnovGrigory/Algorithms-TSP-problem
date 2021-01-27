@@ -4,7 +4,6 @@ n = int(input())
 graph = [list(map(int, input().split())) for _ in range(n)]
 *perm, = map(int, input().split())
 cost = float(input())
-
 mpl.plot(
     [graph[x][0] for x in perm] +
     [graph[perm[0]][0]],
