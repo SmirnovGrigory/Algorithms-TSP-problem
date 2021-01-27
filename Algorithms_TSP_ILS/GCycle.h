@@ -135,31 +135,59 @@ public:
         }
     }
 
-    void opt2() {
+    void switch2Edges(int i, int j) {
+        int tmp = cycle[j];
+        cycle[j] = cycle[i + 1];
+        cycle[i + 1] = tmp;
+        i += 2;
+        j--;
+        while (i < j) {
+            tmp = cycle[j];
+            cycle[j] = cycle[i];
+            cycle[i] = tmp;
+            i++;
+            j--;
+        }
+    }
+
+    void opt2AnyReduce() {
         for (int i = 0; i < this->n - 1; i++)
             for (int j = i + 2; j < this->n; j++) {
                 if (i == 0 && j == this->n - 1)
                     continue;
-                double currentCost = this->costMatrix[this->cycle[i]][this->cycle[i + 1]]
-                                     + this->costMatrix[this->cycle[j]][this->cycle[(j + 1) % this->n]];
-                double potentialCost = this->costMatrix[this->cycle[i]][this->cycle[j]]
-                                       + this->costMatrix[this->cycle[i + 1]][this->cycle[(j + 1) % this->n]];
+                double currentCost = costMatrix[cycle[i]][cycle[i + 1]]
+                                     + costMatrix[cycle[j]][cycle[(j + 1) % this->n]];
+                double potentialCost = costMatrix[cycle[i]][cycle[j]]
+                                       + costMatrix[cycle[i + 1]][cycle[(j + 1) % this->n]];
                 if (potentialCost < currentCost) {
-                    int tmp = this->cycle[j];
-                    this->cycle[j] = this->cycle[i + 1];
-                    this->cycle[i + 1] = tmp;
-                    i += 2;
-                    j--;
-                    while (i < j) { // �������� �� ����� ������ � �����
-                        tmp = this->cycle[j];
-                        this->cycle[j] = this->cycle[i];
-                        this->cycle[i] = tmp;
-                        i++;
-                        j--;
-                    }
+                    switch2Edges(i, j);
                     return;
                 }
             }
+    }
+
+    void opt2BestReduce() {
+        int I = -1, J = -1;
+        double bestReduceCost = -1.;
+        for (int i = 0; i < this->n - 1; i++)
+            for (int j = i + 2; j < this->n; j++) {
+                if (i == 0 && j == this->n - 1)
+                    continue;
+                double currentCost = costMatrix[cycle[i]][cycle[i + 1]]
+                                     + costMatrix[cycle[j]][cycle[(j + 1) % this->n]];
+                double potentialCost = costMatrix[cycle[i]][cycle[j]]
+                                       + costMatrix[cycle[i + 1]][cycle[(j + 1) % this->n]];
+                if (potentialCost < currentCost && (currentCost - potentialCost) > bestReduceCost) {
+                    bestReduceCost = currentCost - potentialCost;
+                    I = i;
+                    J = j;
+                }
+            }
+
+        if (I == -1 || J == -1 || bestReduceCost == -1)
+            return;
+        else
+            switch2Edges(I, J);
     }
 
     void opt4() {
@@ -169,15 +197,16 @@ public:
     void ILS() {
         double previousCost = this->getCost();
         while (true) {
-            this->opt2();
+            this->opt2BestReduce();
             double currentCost = this->getCost();
             if (previousCost != currentCost) {
-                cout << currentCost << endl;
+                //cout << currentCost << endl;
                 previousCost = currentCost;
             } else
                 break;
         }
     }
+
 };
 
 #endif // ! GCYCLE_H
