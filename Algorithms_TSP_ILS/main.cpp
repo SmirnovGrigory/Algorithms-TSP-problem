@@ -8,8 +8,12 @@ int main() {
     string my_file = "cases\\case1.txt";
     GCycle solution(my_file);
     solution.generatePath();
+
+    solution.visualiseGraph();
+
     cout << solution.getCost() << endl;
     solution.ILS();
     cout << "Is Gcycle correct?  " << solution.isCorrect() << endl;
-    cout << endl << solution.getCycle();
+
+    solution.visualiseGraph();
 }

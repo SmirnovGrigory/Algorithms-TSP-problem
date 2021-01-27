@@ -71,7 +71,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/cmake-build-debug
+CMAKE_BINARY_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS
 
 #=============================================================================
 # Targets provided globally by CMake.

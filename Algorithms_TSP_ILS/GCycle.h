@@ -5,7 +5,8 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include<random>
+#include <random>
+#include <iostream>
 
 using namespace std;
 
@@ -17,8 +18,7 @@ private:
     int n;
 
 public:
-
-    void readDataStdin(string &ifname) {
+    void readDataStdin() {
         int n1;
         cin >> n1;
         this->n = n1;
@@ -31,7 +31,7 @@ public:
         }
     }
 
-    explicit GCycle(string &ifname) {
+    void readDataFileStream(string &ifname) {
         ifstream myfile(ifname);
         int n1;
         myfile >> n1;
@@ -46,7 +46,10 @@ public:
             this->points[i].setLoc(x, y);
         }
         myfile.close();
+    }
 
+    explicit GCycle(string &ifname) {
+        readDataStdin();
         this->costMatrix = new double *[this->n];
         for (int i = 0; i < this->n; i++)
             this->costMatrix[i] = new double[this->n];
@@ -56,6 +59,28 @@ public:
                 this->costMatrix[i][j] = this->points[i].EuclideanDistance(this->points[j]);
 
         this->cycle.resize(this->n);
+    }
+
+    string getGraphCondition() {
+        string data;
+        data += to_string(this->n);
+        data += '\n';
+        for (int i = 0; i < n; ++i)
+            data += to_string(this->points[i].getX()) + ' ' + to_string(this->points[i].getY()) + '\n';
+        for (int i = 0; i < n; ++i)
+            data += to_string(cycle[i]) + ' ';
+        return data;
+    }
+
+    void visualiseGraph() {
+        ofstream out("file.txt");
+        out << getGraphCondition().c_str();
+        out.close();
+        try {
+            system("bash paint.sh");
+        } catch (const int a) {
+            cout << "Exception was happened\n";
+        }
     }
 
     ~GCycle() {
@@ -88,7 +113,7 @@ public:
         return strCycle;
     }
 
-    void generatePath() { //������ i==j � costMatrix ���� ���� �������������������
+    void generatePath() {
         random_device seed;
         this->cycle[0] = seed() % this->n;
         this->points[this->cycle[0]].pass();
@@ -110,7 +135,7 @@ public:
         }
     }
 
-    void opt2() { //��������� ������ ���������� ���������
+    void opt2() {
         for (int i = 0; i < this->n - 1; i++)
             for (int j = i + 2; j < this->n; j++) {
                 if (i == 0 && j == this->n - 1)
@@ -152,7 +177,6 @@ public:
             } else
                 break;
         }
-        //������ �������� � opt4
     }
 };
 
