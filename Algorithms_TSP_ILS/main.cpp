@@ -10,18 +10,40 @@ void generateStatistics(int n, string &filePath, string &outname) {
     for (int i = 0; i < n; i++) {
         solution.generatePath();
         outFile << solution.getCost() << "   ";
-        solution.ILS();
+        solution.ILS(10000);
         outFile << solution.getCost() << endl << endl;
     }
 }
 
-int main() {
-    string my_file = "cases/case1.txt";
-    GCycle solution(my_file);
+void test1() {
+    // 10K iterations, .228 - force of perturbation
+    string file = "cases/case131.txt";
+    GCycle solution(file);
     solution.generatePath();
-    cout << solution.getCycle() << '\n';
-    solution.perturbation(.9);
-    cout << solution.getCycle() << '\n';
+    solution.visualiseGraph();
+    solution.ILS(10000);
+    solution.visualiseGraph();
+}
+
+void test2() {
+    string file = "cases/case500.txt";
+    GCycle solution(file);
+    solution.generatePath();
+    solution.visualiseGraph();
+    solution.ILS(1000);
+    solution.visualiseGraph();
+}
+
+int main() {
+//    test1();
+
+    test2();
+//    string my_file = "cases/case1.txt";
+//    GCycle solution(my_file);
+//    solution.generatePath();
+//    cout << solution.getCycle() << '\n';
+//    solution.perturbation(.9);
+//    cout << solution.getCycle() << '\n';
 
 //    solution.visualiseGraph();
 //

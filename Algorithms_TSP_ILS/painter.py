@@ -3,6 +3,7 @@ import matplotlib.pyplot as mpl
 n = int(input())
 graph = [list(map(int, input().split())) for _ in range(n)]
 *perm, = map(int, input().split())
+cost = float(input())
 
 mpl.plot(
     [graph[x][0] for x in perm] +
@@ -17,5 +18,5 @@ mpl.plot(
 )
 mpl.xlim(min([x[0] for x in graph]) - 1, max([x[0] for x in graph]) + 1)
 mpl.ylim(min([x[1] for x in graph]) - 1, max([x[1] for x in graph]) + 1)
-mpl.title('G R A P H')
+mpl.title(f'G R A P H - {cost}')
 mpl.show()

@@ -91,6 +91,9 @@
 		<Unit filename="/home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/main.cpp">
 			<Option target="Algorithms_TSP_ILS"/>
 		</Unit>
+		<Unit filename="/home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/tests.cpp">
+			<Option target="Algorithms_TSP_ILS"/>
+		</Unit>
 		<Unit filename="/home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

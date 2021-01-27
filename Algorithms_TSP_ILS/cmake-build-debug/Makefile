@@ -71,7 +71,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS
+CMAKE_BINARY_DIR = /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -170,6 +170,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Algorithms_TSP_ILS.dir/build.make CMakeFiles/Algorithms_TSP_ILS.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+tests.o: tests.cpp.o
+
+.PHONY : tests.o
+
+# target to build an object file
+tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Algorithms_TSP_ILS.dir/build.make CMakeFiles/Algorithms_TSP_ILS.dir/tests.cpp.o
+.PHONY : tests.cpp.o
+
+tests.i: tests.cpp.i
+
+.PHONY : tests.i
+
+# target to preprocess a source file
+tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Algorithms_TSP_ILS.dir/build.make CMakeFiles/Algorithms_TSP_ILS.dir/tests.cpp.i
+.PHONY : tests.cpp.i
+
+tests.s: tests.cpp.s
+
+.PHONY : tests.s
+
+# target to generate assembly for a file
+tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Algorithms_TSP_ILS.dir/build.make CMakeFiles/Algorithms_TSP_ILS.dir/tests.cpp.s
+.PHONY : tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -182,6 +209,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... tests.o"
+	@echo "... tests.i"
+	@echo "... tests.s"
 .PHONY : help
 
 

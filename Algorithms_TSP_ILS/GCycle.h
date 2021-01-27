@@ -50,8 +50,9 @@ public:
     }
 
     explicit GCycle(string &ifname) {
-        readDataStdin();
-        this->costMatrix = new double *[this->n];
+//        readDataStdin();
+        readDataFileStream(ifname);
+        this->costMatrix =new double *[this->n];
         for (int i = 0; i < this->n; i++)
             this->costMatrix[i] = new double[this->n];
 
@@ -70,6 +71,7 @@ public:
             data += to_string(this->points[i].getX()) + ' ' + to_string(this->points[i].getY()) + '\n';
         for (int i = 0; i < n; ++i)
             data += to_string(cycle[i]) + ' ';
+        data += '\n' + to_string(this->getCost());
         return data;
     }
 
@@ -145,6 +147,11 @@ public:
         shuffle(this->cycle.begin() + seed, this->cycle.begin() + seed + count, generator);
     }
 
+    void freePoints() {
+        for (int i = 0; i < this->n; ++i)
+            this->points[i].deletePass();
+    }
+
     void switch2Edges(int i, int j) {
         int tmp = cycle[j];
         cycle[j] = cycle[i + 1];
@@ -204,17 +211,28 @@ public:
 
     }
 
-    void ILS() {
-        double previousCost = this->getCost();
-        while (true) {
-            this->opt2BestReduce();
-            double currentCost = this->getCost();
-            if (previousCost != currentCost) {
-                //cout << currentCost << endl;
-                previousCost = currentCost;
-            } else
-                break;
+    void ILS(int iterations) {
+        vector<int> bestCycle(this->n);
+        double bestCost = 1e9;
+        for (int i = 0; i < iterations; ++i) {
+            double previousCost = this->getCost();
+            while (true) {
+                this->opt2BestReduce();
+                double currentCost = this->getCost();
+                if (previousCost != currentCost) {
+                    //cout << currentCost << endl;
+                    previousCost = currentCost;
+                } else
+                    break;
+            }
+            if (previousCost < bestCost) {
+                bestCost = previousCost;
+                copy(this->cycle.begin(), this->cycle.end(), bestCycle.begin());
+            }
+            this->perturbation(.322);
+            this->freePoints();
         }
+        copy(bestCycle.begin(), bestCycle.end(), this->cycle.begin());
     }
 
 };

@@ -3,4 +3,4 @@ project(Algorithms_TSP_ILS)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Algorithms_TSP_ILS main.cpp Point.h GCycle.h)
+add_executable(Algorithms_TSP_ILS main.cpp Point.h GCycle.h tests.cpp)

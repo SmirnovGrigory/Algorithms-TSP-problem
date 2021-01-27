@@ -5,3 +5,5 @@ CMakeFiles/Algorithms_TSP_ILS.dir/main.cpp.o: ../GCycle.h
 CMakeFiles/Algorithms_TSP_ILS.dir/main.cpp.o: ../Point.h
 CMakeFiles/Algorithms_TSP_ILS.dir/main.cpp.o: ../main.cpp
 
+CMakeFiles/Algorithms_TSP_ILS.dir/tests.cpp.o: ../tests.cpp
+
