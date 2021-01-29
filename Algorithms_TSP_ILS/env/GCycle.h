@@ -153,7 +153,7 @@ public:
 
     void perturbation(double force) {
         if (force >= 1) force = .9;
-        if (force <= 0) force = 0;
+        if (force <= .01) force = .01;
         int count = (int) (this->n * force);
         random_device generator;
         unsigned int seed = generator() % (this->n - count);
@@ -243,12 +243,8 @@ public:
                 bestCost = previousCost;
                 copy(this->cycle.begin(), this->cycle.end(), bestCycle.begin());
             }
-            this->perturbation(.005);
+            this->perturbation(.050);
             this->freePoints();
-            cout.precision(8);
-            if (!(i % 10))
-                cout << i / 1000 << "K iteration -> " << this->getCost() << " (best cost is: " << bestCost << ")"
-                     << endl;
         }
         copy(bestCycle.begin(), bestCycle.end(), this->cycle.begin());
     }

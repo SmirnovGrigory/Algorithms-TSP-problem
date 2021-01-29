@@ -40,9 +40,10 @@ void test_mona_1000() {
     string file = "cases/mona_1000.txt";
     GCycle solution(file);
     solution.generatePath();
-    solution.ILS(1000000);
+    solution.ILS(10000);
     solution.visualiseGraph();
     solution.chooseBestResult();
+    // Best result - 459223
 }
 
 int main() {
