@@ -36,44 +36,75 @@ void test2() {
 }
 
 void test_mona_1000() {
-    string file = "cases/mona_1000new.txt";
+    string testName("mona_1000.txt");
+    string file = "cases/" + testName;
     GCycle solution(file);
     solution.generatePath();
-    solution.ILS(10000);
-    solution.visualiseGraph();
-    solution.chooseBestResult((char *) "Answers/mona1000.txt", (char *) "Answers/mona1000ans");
+    solution.ILS(1000000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+}
+
+void test_lu_980() {
+    string testName("lu980.txt");
+    string file = "cases/" + testName;
+    GCycle solution(file);
+    solution.generatePath();
+    solution.ILS(1000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+}
+
+void test_ja_1000() {
+    string testName("ja_1000.txt");
+    string file = "cases/" + testName;
+    GCycle solution(file);
+    solution.generatePath();
+    solution.ILS(1000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+}
+
+void test_random_1() {
+    string testName("random_1.txt");
+    string file = "cases/" + testName;
+    GCycle solution(file);
+    solution.generatePath();
+    solution.ILS(1000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+}
+
+void test_random_2() {
+    string testName("random_2.txt");
+    string file = "cases/" + testName;
+    GCycle solution(file);
+    solution.generatePath();
+    solution.ILS(1000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+}
+
+void test_random_3() {
+    string testName("random_3.txt");
+    string file = "cases/" + testName;
+    GCycle solution(file);
+    solution.generatePath();
+    solution.ILS(1000);
+    // solution.visualiseGraph();
+    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
 }
 
 int main() {
     test_mona_1000();
+    //test_lu_980();
+    //test_ja_1000();
+    //test_random_1();
+    //test_random_2();
+    //test_random_3();
+
+    //test1();
 
 
-//    test1();
-
-    //test2();
-//    string my_file = "cases/case1.txt";
-//    GCycle solution(my_file);
-//    solution.generatePath();
-//    cout << solution.getCycle() << '\n';
-//    solution.perturbation(.9);
-//    cout << solution.getCycle() << '\n';
-
-//    solution.visualiseGraph();
-//
-//    cout << solution.getCost() << endl;
-//    solution.ILS();
-//    cout << "Is Gcycle correct?  " << solution.isCorrect() << endl;
-//
-//    solution.visualiseGraph();
-//    my_file = "cases/case131.txt";
-    /*GCycle solution(my_file);
-    solution.generatePath();
-    cout << solution.getCost()<<endl;
-    solution.ILS();
-    cout << solution.getCost() << endl;
-    cout << "Is Gcycle correct?  "<<solution.isCorrect() << endl;
-    cout << endl << solution.getCycle();*/
-//    string out1_file = "statistics/outcase131.txt";
-//    generateStatistics(30, my_file, out1_file);
 }
 

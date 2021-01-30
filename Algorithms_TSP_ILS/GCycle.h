@@ -84,7 +84,7 @@ public:
         }
     }
 
-    void chooseBestResult(char *res, char *ans) {
+    void chooseBestResult(const string &res, const string &ans) {
         ifstream input(res);
         int bestCost;
         input >> bestCost;
@@ -131,6 +131,7 @@ public:
 
     void generatePath() {
         random_device seed;
+        cout << this->n;
         this->cycle[0] = seed() % this->n;
         this->points[this->cycle[0]].pass();
 
@@ -230,8 +231,8 @@ public:
         for (int i = 0; i < iterations; ++i) {
             double previousCost = this->getCost();
             while (true) {
-                this->opt2BestReduce();
-//                this->opt2AnyReduce();
+//                this->opt2BestReduce();
+                this->opt2AnyReduce();
                 double currentCost = this->getCost();
                 if (previousCost != currentCost) {
                     //cout << currentCost << endl;
@@ -243,11 +244,15 @@ public:
                 bestCost = previousCost;
                 copy(this->cycle.begin(), this->cycle.end(), bestCycle.begin());
             }
-            this->perturbation(.015);
+
+            double perturbationForce = .003;
+
+            this->perturbation(perturbationForce);
             this->freePoints();
             cout.precision(8);
             if (!(i % 10))
-                cout << i / 1000 << "K iteration -> " << this->getCost() << " (best cost is: " << bestCost << ")"
+                cout << i / 1000 << "K iteration -> " << this->getCost() << " (best cost is: " << bestCost
+                     << " pForce: " << perturbationForce << ")"
                      << endl;
         }
         copy(bestCycle.begin(), bestCycle.end(), this->cycle.begin());
