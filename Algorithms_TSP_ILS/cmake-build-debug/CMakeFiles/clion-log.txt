@@ -1,4 +1,6 @@
-/snap/clion/139/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS
--- Configuring done
--- Generating done
--- Build files have been written to: /home/toliman/Projects/Algorithms-TSP-problem/Algorithms_TSP_ILS/cmake-build-debug
+"E:\Clion\CLion 2019.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" G:\Projects\Algorithms-TSP-problem\Algorithms_TSP_ILS
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.17 or higher is required.  You are running version 3.15.3
+
+
+-- Configuring incomplete, errors occurred!
