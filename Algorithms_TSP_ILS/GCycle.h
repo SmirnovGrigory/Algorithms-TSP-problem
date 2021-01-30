@@ -84,16 +84,16 @@ public:
         }
     }
 
-    void chooseBestResult() {
-        ifstream input("best_result.txt");
+    void chooseBestResult(char *res, char *ans) {
+        ifstream input(res);
         int bestCost;
         input >> bestCost;
         input.close();
         if (this->getCost() < bestCost) {
-            ofstream output("output.txt");
+            ofstream output(ans);
             output << getCycle();
             output.close();
-            ofstream out("best_result.txt");
+            ofstream out(res);
             out << getCost();
             out.close();
         }
@@ -230,8 +230,8 @@ public:
         for (int i = 0; i < iterations; ++i) {
             double previousCost = this->getCost();
             while (true) {
-//                this->opt2BestReduce();
-                this->opt2AnyReduce();
+                this->opt2BestReduce();
+//                this->opt2AnyReduce();
                 double currentCost = this->getCost();
                 if (previousCost != currentCost) {
                     //cout << currentCost << endl;
@@ -243,7 +243,7 @@ public:
                 bestCost = previousCost;
                 copy(this->cycle.begin(), this->cycle.end(), bestCycle.begin());
             }
-            this->perturbation(.005);
+            this->perturbation(.015);
             this->freePoints();
             cout.precision(8);
             if (!(i % 10))

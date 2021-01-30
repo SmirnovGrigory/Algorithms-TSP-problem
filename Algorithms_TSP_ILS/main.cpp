@@ -20,8 +20,7 @@ void test1() {
     string file = "cases/case131.txt";
     GCycle solution(file);
     solution.generatePath();
-    solution.visualiseGraph();
-    solution.ILS(10000);
+    solution.ILS(100000);
     solution.visualiseGraph();
     // Best result - 568
 }
@@ -37,12 +36,12 @@ void test2() {
 }
 
 void test_mona_1000() {
-    string file = "cases/mona_1000.txt";
+    string file = "cases/mona_1000new.txt";
     GCycle solution(file);
     solution.generatePath();
-    solution.ILS(1000000);
+    solution.ILS(10000);
     solution.visualiseGraph();
-    solution.chooseBestResult();
+    solution.chooseBestResult((char *) "Answers/mona1000.txt", (char *) "Answers/mona1000ans");
 }
 
 int main() {
