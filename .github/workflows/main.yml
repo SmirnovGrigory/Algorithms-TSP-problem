@@ -43,7 +43,6 @@ jobs:
       - name: Run TSP_ILS
         run: |
           cd Algorithms_TSP_ILS
-          rm main
           make
           ls
           ls Answers_GHA
