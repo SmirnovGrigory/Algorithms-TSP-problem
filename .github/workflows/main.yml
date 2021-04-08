@@ -50,5 +50,5 @@ jobs:
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          path: "Algorithms_TSP_ILS/main"
+          path: "Answers_GHA" #"Algorithms_TSP_ILS/main"
           retention-days: 3
