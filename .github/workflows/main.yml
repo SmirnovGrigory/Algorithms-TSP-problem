@@ -42,5 +42,5 @@ jobs:
           ls
       - name: Run TSP_ILS
         run: |
-          ls
+          cd Algorithms_TSP_ILS
           make
