@@ -40,6 +40,7 @@ jobs:
           ls
           cd Algorithms_TSP_ILS
           ls
+          echo "ulululul" >> Answers_GHA/lol.txt
       - name: Run TSP_ILS
         run: |
           cd Algorithms_TSP_ILS
