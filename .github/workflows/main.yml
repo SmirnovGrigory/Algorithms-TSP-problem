@@ -44,3 +44,4 @@ jobs:
         run: |
           cd Algorithms_TSP_ILS
           make
+          ls
