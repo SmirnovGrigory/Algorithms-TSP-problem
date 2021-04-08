@@ -92,7 +92,7 @@ void test_random_3() {
     solution.generatePath();
     solution.ILS(1000);
     // solution.visualiseGraph();
-    solution.chooseBestResult("Answers_forGHA/" + testName, "Answers_forGHA/" + testName + "ans");
+    solution.chooseBestResult("Answers_GHA/" + testName, "Answers_GHA/" + testName + "ans");
 }
 
 int main() {
