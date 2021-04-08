@@ -38,3 +38,5 @@ jobs:
         run: |
           pwd
           ls
+          cd Algorithms_TSP_ILS
+          ls
