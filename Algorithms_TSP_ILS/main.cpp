@@ -42,7 +42,7 @@ void test_mona_1000() {
     solution.generatePath();
     solution.ILS(1000);
     // solution.visualiseGraph();
-    solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
+    solution.chooseBestResult("Answers_GHA/" + testName, "Answers_GHA/" + testName + "ans");
 }
 
 void test_lu_980() {
