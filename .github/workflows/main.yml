@@ -47,3 +47,4 @@ jobs:
           make
           cd Answers_GHA
           ls
+          ls /Answers
