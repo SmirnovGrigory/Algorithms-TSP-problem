@@ -44,4 +44,5 @@ jobs:
         run: |
           cd Algorithms_TSP_ILS
           make
+          cd Answers_GHA
           ls
