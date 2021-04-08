@@ -40,7 +40,7 @@ void test_mona_1000() {
     string file = "cases/" + testName;
     GCycle solution(file);
     solution.generatePath();
-    solution.ILS(1000000);
+    solution.ILS(1000);
     // solution.visualiseGraph();
     solution.chooseBestResult("Answers/" + testName, "Answers/" + testName + "ans");
 }
