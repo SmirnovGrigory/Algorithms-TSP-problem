@@ -59,3 +59,4 @@ jobs:
         with:
           to: 522544308
           token: 1783089630:AAEwIPhd20ozFThi6WY0OhCtx0IUKCYyy1M
+          message: Send message
