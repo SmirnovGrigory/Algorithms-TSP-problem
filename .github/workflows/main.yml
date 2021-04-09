@@ -57,5 +57,5 @@ jobs:
       - uses: actions/checkout@master
       - uses: appleboy/telegram-action@master
         with:
-          to: ${{ 522544308 }}
-          token: ${{ 1783089630:AAEwIPhd20ozFThi6WY0OhCtx0IUKCYyy1M }}
+          to: 522544308
+          token: 1783089630:AAEwIPhd20ozFThi6WY0OhCtx0IUKCYyy1M
