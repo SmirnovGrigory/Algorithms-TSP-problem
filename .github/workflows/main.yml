@@ -59,5 +59,5 @@ jobs:
         with:
           to: 522544308
           token: 1783089630:AAEwIPhd20ozFThi6WY0OhCtx0IUKCYyy1M
-          args: my massage
+          args: ${{ GITHUB_REPOSITORY }}
           document: Algorithms_TSP_ILS/main
